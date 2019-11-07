@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:1.6.1
+    volumes: ./nginx_conf:/etc/nginx
+
+  forwarder:
+    build: ./fluentd_forwarder/Dockerfile
+    volumes: ./fluentd_forwarder/fluent.conf:/fluentd/etc/fluent.conf
+
+
+  aggregator:
+    build: ./fluentd_aggregator/Dockerfile
+    volumes: ./fluentd_aggregator/fluent.conf:/fluentd/etc/fluent.conf
+
